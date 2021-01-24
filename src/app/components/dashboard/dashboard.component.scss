@@ -1,0 +1,25 @@
+.panel-container{
+   margin: 20px; 
+}
+.bg-blue{
+  background-color: #4a80f7;
+  .mat-list-base{
+    .mat-list-item{
+      color: #fff;
+    }
+  }
+}
+.mat-toolbar{
+  background-color: #fff;
+  button{
+    background: none;
+    border: none;
+  }
+  .menu{
+    border:none !important;
+    background: none !important;
+  }
+}
+.mat-drawer-container{
+  background-color: #f1f7f8;
+}

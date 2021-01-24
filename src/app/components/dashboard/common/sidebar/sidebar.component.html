@@ -1,0 +1,5 @@
+<mat-selection-list>
+  <mat-list-item *ngFor="let menu of MenuItem" routerLink=[menu.route]>
+    <mat-icon aria-hidden="false">{{menu.icon}}</mat-icon> {{menu.name}}
+  </mat-list-item>
+</mat-selection-list>

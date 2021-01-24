@@ -1,0 +1,21 @@
+.bg-auth{
+  background-image: url('../../images/bg.jpg');  
+  background-size: cover;
+}
+.auth-form-container{
+  width: 100%;
+  max-width: 750px;
+}
+.login-container{
+  padding: 25px 10px 25px 25px;
+  width: 100%;
+  @media (max-width: 992px) {
+    border-left: none;
+    padding: 25px;
+  }
+  border-left: 1px solid #ccc;
+  h4{
+    font-weight: 500 !important;
+  }
+ 
+}

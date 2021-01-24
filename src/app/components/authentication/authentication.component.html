@@ -1,0 +1,30 @@
+<div fxLayout="row" fxLayoutAlign="center center" fxFill class="bg-auth">
+	<mat-card class="auth-form-container" fxFlex.sm="90" fxFlex.xs="90"  fxLayout="row"   fxLayoutAlign="center center">
+		<div fxFlex="60" fxShow.gt-sm fxHide.lt-sm fxLayout="row" fxLayoutAlign="center center" >
+			<img src="https://iitnepal.edu.np/wp-content/uploads/2020/04/dataanlysis_nyc_iitnepal.jpg" alt="" style="width: 100%;max-width: 260px;">
+		</div>
+		<div fxFlex="40" fxFlex.sm="100" fxFlex.xs="190" fxFill fxLayout="row" fxLayoutAlign="center center" >
+			<div class="login-container">
+				<h4 class="text-blue">Login Form</h4>
+				<p class="text-sm">Please use following to login <br>
+				<strong>User Name : </strong>abc@xyz.com<br>
+				<strong>Password : </strong>H@ppyCoding</p>
+				<form [formGroup]='loginForm' (ngSubmit)="onLogin()">
+					<div class="form-group">
+						<label>User Name</label>
+						<input type="text" class="br-4 form-control bdr-lgrey" placeholder="Enter User Name" required formControlName="user_name" />
+						<div class="error" *ngIf="loginForm.get('user_name').errors && (loginForm.get('user_name').touched || loginForm.get('user_name').dirty)" >{{loginForm.get('user_name').errors.required ? 'Username is required' : 'Please provide valid email'}}</div>
+					</div>
+					<div class="form-group">
+						<label>Password</label>
+						<input type="password" class="br-4 form-control bdr-lgrey" placeholder="Enter Your Password" required formControlName="password" />
+            <div class="error" *ngIf="loginForm.get('password').errors && (loginForm.get('password').touched || loginForm.get('password').dirty)" >{{loginForm.get('password').errors.required ? 'Please provide password' : 'Password must be greater than 6 characters'}}</div>
+            <div class="error" *ngIf="notValidUser">Wrong user name or password</div>
+          </div>
+          <button mat-flat-button color="primary" class="fluid mt-sm" style="background-color: #007de1;">Login</button>
+				</form>
+			</div>
+		</div>  
+	</mat-card>
+	
+</div>
