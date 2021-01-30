@@ -1,0 +1,42 @@
+
+.responsiveMobile{
+    display: none;
+}
+.responsiveMobile.combo{
+    padding: 10px;
+    background: #fbfbfb;
+    font-size: 12px;
+    margin-top: 10px;
+}
+.responsiveMobile.combo.hide{
+    display: none !important;
+}
+.xs-fab {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    line-height: 14px;
+    font-size: 14px;
+    display: none;
+    &::ng-deep .mat-button-wrapper{
+        line-height: 14px;
+        padding: 0;
+
+         .mat-icon {
+             font-size: 14px;
+             padding-right: 4px;
+             padding-top: 4px;
+         }
+   }
+}
+@media (max-width: 768px) {
+    .xs-fab {display: inline;}
+    .table-responsive-fn{
+        th,td{
+            display: none;
+        }
+    }
+    .responsiveMobile{
+        display: table-cell !important;
+    } 
+}

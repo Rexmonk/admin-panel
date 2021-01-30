@@ -31,8 +31,9 @@ export class HomeComponent implements OnInit {
 
 
  dataSource ;
+  comboControl : Array<boolean> = [];
   ELEMENT_DATA: userDataArray[];
-  displayedColumns: string[] = ['collegePayout', 'disbursementDatetime', 'disbursmentId', 'emailId','fullName','leadId','leadType','loanRequired','mobile','productData','status','tenure','utr'];
+  displayedColumns: string[] = ['leadId','leadName','collegePayout', 'disbursementDatetime','lead','loanData','productData','utr','whj'];
   perPage:string = "10";
   pageNav = {
     nextPage : false,

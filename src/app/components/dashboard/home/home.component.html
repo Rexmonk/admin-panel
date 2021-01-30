@@ -1,12 +1,34 @@
-<div fxLayout="row" fxLayoutAlign="space-between  center">
+<div fxLayout.sm="row" fxLayoutAlign.gt-sm="space-between center">
   <h4>User Data Table</h4>
-  <div style="max-width: 200px;">
+  <div style="max-width: 145px;">
     <input class="form-control-small br-4 bdr-lgrey" matInput (keyup)="applyFilter($event)" placeholder="Filter Table" #input >
   </div>
 </div>
 
 <div class="mat-table-container mt-sm">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="dataSource" matSort class="table-responsive-fn" [multiTemplateDataRows]="true">
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="leadId" >
+      <th class="responsiveMobile" mat-header-cell *matHeaderCellDef mat-sort-header> Lead ID</th>
+      <td class="responsiveMobile" mat-cell *matCellDef="let row;let i = dataIndex;">        
+        <button class="xs-fab" (click)="comboControl[i] = !comboControl[i]" mat-mini-fab success aria-label="Example icon button with a home icon">
+          +
+        </button> {{row.leadId ? row.leadId : "-"}}
+
+        
+      </td>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="leadName">
+      <th class="responsiveMobile" mat-header-cell *matHeaderCellDef mat-sort-header> Lead Name</th>
+      <td class="responsiveMobile" mat-cell *matCellDef="let row">        
+        {{row.fullName ? row.fullName : "-"}}
+       
+      </td>
+    </ng-container>
+
 
     <!-- ID Column -->
     <ng-container matColumnDef="collegePayout">
@@ -16,57 +38,34 @@
 
     <!-- Progress Column -->
     <ng-container matColumnDef="disbursementDatetime">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Disbursement Date time </th>
-      <td mat-cell *matCellDef="let row"> {{row.disbursementDatetime ? row.disbursementDatetime : "-"}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="disbursmentId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Disbursment ID </th>
-      <td mat-cell *matCellDef="let row"> {{row.disbursmentId ? row.disbursmentId : "-"}} </td>
-    </ng-container>
-
-    <!-- Color Column -->
-    <ng-container matColumnDef="emailId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email ID </th>
-      <td mat-cell *matCellDef="let row"> {{row.emailId ? row.emailId : "-"}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Disbursement</th>
+      <td mat-cell *matCellDef="let row">
+      <strong>Date : </strong> {{row.disbursementDatetime ? row.disbursementDatetime : "-"}} <br>
+      <strong>ID : </strong> {{row.disbursmentId ? row.disbursmentId : "-"}}
+      </td>
+      
     </ng-container>
 
     <!-- Color Column -->
-    <ng-container matColumnDef="fullName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name</th>
-      <td mat-cell *matCellDef="let row" > {{row.fullName ? row.fullName : "-"}} </td>
+    <ng-container matColumnDef="lead">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Lead </th>
+      <td mat-cell *matCellDef="let row">        
+        <strong>Lead ID : </strong>{{row.leadId ? row.leadId : "-"}} <br>
+        <strong>Name : </strong>{{row.fullName ? row.fullName : "-"}} <br>
+        <strong>Email : </strong>{{row.emailId ? row.emailId : "-"}} <br> 
+        <strong>Lead Type : </strong>{{row.leadType ? row.leadType : "-"}} <br>
+        <strong>Mobile : </strong>{{row.mobile ? row.mobile : '-'}}
+      </td>
     </ng-container>
 
     <!-- Color Column -->
-    <ng-container matColumnDef="leadId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Lead ID</th>
-      <td mat-cell *matCellDef="let row" > {{row.leadId ? row.leadId : "-"}} </td>
-    </ng-container>
-
-    <!-- Color Column -->
-    <ng-container matColumnDef="leadType">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Lead Type</th>
-      <td mat-cell *matCellDef="let row" > {{row.leadType ? row.leadType : "-"}} </td>
-    </ng-container>
-
-    <!-- Color Column -->
-    <ng-container matColumnDef="loanRequired">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Loan Required</th>
-      <td mat-cell *matCellDef="let row" > {{row.loanRequired ? row.loanRequired : "-"}} </td>
-    </ng-container>
-
-    <!-- Color Column -->
-    <ng-container matColumnDef="mobile">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</th>
-      <td mat-cell *matCellDef="let row" > {{row.mobile ? row.mobile : '-'}} </td>
-    </ng-container>
-
-
-    <!-- Color Column -->
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-      <td mat-cell *matCellDef="let row" > {{row.status ? row.status : "-"}} </td>
+    <ng-container matColumnDef="loanData">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Loan Data</th>
+      <td mat-cell *matCellDef="let row" >
+        <strong>Loan Required : </strong>{{row.loanRequired ? row.loanRequired : "-"}}<br>
+        <strong>Loan Status : </strong>{{row.status ? row.status : "-"}}<br>
+        <strong>Loan Tenure : </strong>{{row.tenure ? row.tenure : "-"}}
+      </td>
     </ng-container>
 
     <!-- Color Column -->
@@ -75,21 +74,55 @@
       <td mat-cell *matCellDef="let row" > {{row.productData ? row.productData : "-"}} </td>
     </ng-container>
 
-    <!-- Color Column -->
-    <ng-container matColumnDef="tenure">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tenure</th>
-      <td mat-cell *matCellDef="let row" > {{row.tenure ? row.tenure : "-"}} </td>
-    </ng-container>
-
      <!-- Color Column -->
      <ng-container matColumnDef="utr">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>UTR</th>
       <td mat-cell *matCellDef="let row" > {{row.utr ? row.utr : "-"}} </td>
     </ng-container>
 
+    <!-- Color Column -->
+    <ng-container matColumnDef="whj">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>WHJ</th>
+      <td mat-cell *matCellDef="let row" >
+        <strong>Email : </strong> {{row.whjUserEmail ? row.whjUserEmail : "-"}}<br>
+        <strong>Mobile : </strong>{{row.whjUserMobile ? row.whjUserMobile : "-"}}<br>
+        <strong>Name : </strong>{{row.whjUserName ? row.whjUserName : "-"}}
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell class="responsiveMobile combo hide" [ngClass]="{'hide' : !comboControl[i]}" *matCellDef="let row;let i = dataIndex;">
+        <strong>Name : </strong><br>{{row.fullName ? row.fullName : "-"}} <br><br>
+        <strong>Email : </strong><br>{{row.emailId ? row.emailId : "-"}} <br> <br>
+        <strong>Lead Type : </strong><br>{{row.leadType ? row.leadType : "-"}}<br><br>
+        <strong>Mobile : </strong><br>{{row.mobile ? row.mobile : '-'}}<br><br>
+        <strong>Loan Required : </strong><br>{{row.loanRequired ? row.loanRequired : "-"}}<br><br>
+        <strong>Loan Status : </strong><br>{{row.status ? row.status : "-"}}<br><br>
+        <strong>Loan Tenure : </strong><br>{{row.tenure ? row.tenure : "-"}}<br><br>
+        <strong>DISBMT. Date : </strong><br>{{row.disbursementDatetime ? row.disbursementDatetime : "-"}} <br><br>
+        <strong>DISBMT. ID : </strong><br>{{row.disbursmentId ? row.disbursmentId : "-"}}
+      </td>      
+    </ng-container>
+    <ng-container matColumnDef="expandedDetail2">
+      <td mat-cell class="responsiveMobile combo hide" [ngClass]="{'hide' : !comboControl[i]}" *matCellDef="let row;let i = dataIndex;">
+        <strong>College Payout : </strong><br>{{row.collegePayout ? row.collegePayout : "-"}}<br><br>
+        <strong>Product Data : </strong><br>{{row.productData ? row.productData : "-"}}<br><br>
+        <strong>UTR : </strong><br>{{row.utr ? row.utr : "-"}}<br><br>
+        <strong>WHG Email : </strong><br>{{row.whjUserEmail ? row.whjUserEmail : "-"}}<br><br>
+        <strong>WHG Mobile : </strong><br>{{row.whjUserMobile ? row.whjUserMobile : "-"}}<br><br>
+        <strong>WHG Name : </strong><br>{{row.whjUserName ? row.whjUserName : "-"}}
+      </td>
+    </ng-container>
+
+
+
+
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail','expandedDetail2'];">
+    </tr>
     <!-- Row shown when there is no matching data. -->
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell text-center" style="height: 150px;" colspan="13">No data matching the filter "{{input.value}}"</td>

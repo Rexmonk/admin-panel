@@ -93,6 +93,7 @@ miscellaneous Styling
       box-sizing: border-box;
       min-width: 100px;
       font-size: 12px;
+      vertical-align: top;
     }
   }
 }
@@ -224,6 +225,7 @@ Form Styling
 }
 .form-control-small{
   padding: 5px 10px;
+  width: 100%;
 }
 /*=====================================================
 Pagination Styling
